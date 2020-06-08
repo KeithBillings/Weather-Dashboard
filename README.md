@@ -8,6 +8,8 @@ On this homework assignment I was tasked with creating a weather dashboard.
 
 ## Screenshots
 
+![Screenshot1](./Assets/images/Screenshot1.png)
+
 ## What I Did
 
   * 

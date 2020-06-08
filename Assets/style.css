@@ -1,0 +1,26 @@
+#backgroundImages {
+  display: fixed;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.search {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search > h1 {
+  color: white;
+  text-shadow: black 0px 0px 10px;
+  margin-bottom: 3rem;
+  font-size: 4vw;
+}
