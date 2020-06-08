@@ -1,15 +1,29 @@
-#backgroundImages {
-  display: fixed;
-  position: fixed;
-  top: 0;
-  z-index: -1;
-}
-
+/* Utilities */
 .text-center {
   text-align: center;
 }
 
-.search {
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5 {
+  color: white;
+  text-shadow: black 0px 0px 10px;
+}
+
+h1 {
+  margin-bottom: 3rem;
+  font-size: 4vw;
+}
+
+/* Classes */
+.centerAll {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -18,9 +32,16 @@
   flex-direction: column;
 }
 
-.search > h1 {
-  color: white;
-  text-shadow: black 0px 0px 10px;
-  margin-bottom: 3rem;
-  font-size: 4vw;
+/* Ids */
+#backgroundImages {
+  top: 0;
+  left: 0;
+  display: fixed;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+#searchResults {
+  margin-top: 3rem;
 }

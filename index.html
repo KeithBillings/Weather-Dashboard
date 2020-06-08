@@ -11,14 +11,21 @@
   <link rel="stylesheet" href="./Assets/style.css" />
 </head>
 
-<body>
-  <div class="search">
+<body class="centerAll">
     <h1>
       Weather Dashboard
     </h1>
-    <input class="text-center" type="text" placeholder="Enter City Name" />
+    <form id="userSearch" >
+      <input id="userSearchInput" class="text-center" type="text" placeholder="Enter City Name" />
+    </form>
+
+  <div id = "searchResults" class="show">
+    <h2>
+      City Name
+    </h2>
   </div>
 
+  <!-- Background -->
   <div id="backgroundImages" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
