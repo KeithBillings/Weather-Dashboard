@@ -13,17 +13,35 @@
   <link rel="stylesheet" href="./Assets/style.css" />
 </head>
 
-<body class="centerAll">
-  <h1 id="weatherHeader">
+<body class="centerAllElements">
+  <h1 id="weatherHeader" class="text-center">
     Weather Dashboard
   </h1>
+  <h2 id="currentDate">
+    Date
+  </h2>
   <form id="userSearch">
     <input id="userSearchInput" class="text-center" type="text" placeholder="Enter City Name" />
   </form>
 
-  <div id="searchResults" class="hide">
-    <h2 id="cityName">
-    </h2>
+  <div id="searchResults" class="container showElement">
+    <div class="row">
+      <div class="col-lg-1" id="weatherIcon"></div>
+      <div class="col-lg-2" id="weatherCityName"></div>
+      <div class="col-lg-3" id="weatherInformation"></div>
+      <div class="col-lg-3" id="weatherInformation2"></div>
+      <div class="col-lg-3" id="weatherInformation3">
+        <img src='https://thomas.vanhoutte.be/miniblog/wp-content/uploads/spinner-rosetta-gray-26x26.gif  ' style = "width: 20%"  />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">0</div>
+      <div class="col-sm-2">1</div>
+      <div class="col-sm-2">2</div>
+      <div class="col-sm-2">3</div>
+      <div class="col-sm-2">4</div>
+      <div class="col-sm-2">5</div>
+    </div>
   </div>
 
   <!-- Background -->

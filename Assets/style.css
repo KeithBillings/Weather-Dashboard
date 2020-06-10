@@ -3,12 +3,12 @@
   text-align: center;
 }
 
-.hide {
+.hideElement {
   display: none;
 }
 
-.show {
-  display: flex;
+.showElement {
+  display: block;
 }
 
 /* Headers */
@@ -18,12 +18,11 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  margin-bottom: 3rem;
-  font-size: 4vw;
+  font-size: 3rem;
 }
 
 /* Classes */
-.centerAll {
+.centerAllElements {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -32,16 +31,31 @@ h1 {
   flex-direction: column;
 }
 
+.carousel-item > img {
+  overflow: visible;
+  height: 100vh;
+  width: auto;
+}
+
 /* Ids */
 #backgroundImages {
   top: 0;
   left: 0;
-  display: fixed;
+  display: flex;
   position: fixed;
-  top: 0;
   z-index: -1;
+}
+
+#currentDate {
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 #searchResults {
   margin-top: 3rem;
 }
+
+/* #weatherInformation3 > img{
+  width: 100px;
+  height: 100px;
+} */
