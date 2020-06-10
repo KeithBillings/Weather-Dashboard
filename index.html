@@ -17,32 +17,35 @@
   <h1 id="weatherHeader" class="text-center">
     Weather Dashboard
   </h1>
-  <h2 id="currentDate">
-    Date
-  </h2>
-  <form id="userSearch">
-    <input id="userSearchInput" class="text-center" type="text" placeholder="Enter City Name" />
-  </form>
+  <div id="currentDateParent" class="hideElement">
+    <h4 class="text-center">For</h4>
+    <h2 id="currentDate" class="row">
+      <!-- Date will be filled in here -->
+    </h2>
+  </div>
+
 
   <div id="searchResults" class="container showElement">
     <div class="row">
       <div class="col-lg-1" id="weatherIcon"></div>
       <div class="col-lg-2" id="weatherCityName"></div>
+      <div class="col-lg-3" id="weatherTemperature"></div>
       <div class="col-lg-3" id="weatherInformation"></div>
-      <div class="col-lg-3" id="weatherInformation2"></div>
-      <div class="col-lg-3" id="weatherInformation3">
-        <img src='https://thomas.vanhoutte.be/miniblog/wp-content/uploads/spinner-rosetta-gray-26x26.gif  ' style = "width: 20%"  />
-      </div>
+      <div class="col-lg-3" id="weatherUVIndex"></div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-sm-2">0</div>
       <div class="col-sm-2">1</div>
       <div class="col-sm-2">2</div>
       <div class="col-sm-2">3</div>
       <div class="col-sm-2">4</div>
       <div class="col-sm-2">5</div>
-    </div>
+    </div> -->
   </div>
+
+  <form id="userSearch">
+    <input id="userSearchInput" class="text-center" type="text" placeholder="Enter City Name" />
+  </form>
 
   <!-- Background -->
   <div id="backgroundImages" class="carousel slide carousel-fade" data-ride="carousel">
@@ -81,6 +84,9 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 
+  <!-- Moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  
   <!-- Local JS -->
   <script src="./Assets/script.js"></script>
 

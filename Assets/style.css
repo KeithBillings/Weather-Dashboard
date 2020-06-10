@@ -11,6 +11,24 @@
   display: block;
 }
 
+/* UVI Color Utilities */
+.green {
+  color: green;
+}
+.yellow {
+  color: yellow;
+}
+.orange {
+  color: orange;
+}
+.red {
+  color: red;
+}
+.violet {
+  color: violet;
+}
+
+
 /* Headers */
 h1, h2, h3, h4, h5 {
   color: white;
@@ -52,10 +70,9 @@ h1 {
 }
 
 #searchResults {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
-/* #weatherInformation3 > img{
-  width: 100px;
-  height: 100px;
-} */
+#userSearch {
+  margin: 1rem;
+}
