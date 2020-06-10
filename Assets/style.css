@@ -1,3 +1,7 @@
+body {
+  text-align: center;
+}
+
 /* Utilities */
 .text-center {
   text-align: center;
@@ -55,6 +59,14 @@ h1 {
   width: auto;
 }
 
+.card {
+  background-color: transparent;
+}
+
+.card-body {
+  color: white;
+}
+
 /* Ids */
 #backgroundImages {
   top: 0;
@@ -74,5 +86,10 @@ h1 {
 }
 
 #userSearch {
-  margin: 1rem;
+  margin: 2rem;
 }
+
+#forecastResults {
+  margin-top: 3rem;
+}
+

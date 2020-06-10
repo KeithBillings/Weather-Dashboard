@@ -5,6 +5,13 @@ $(document).ready(function () {
   $("#currentDate").text(moment().format("MMMM Do, YYYY"));
 });
 
+// Temp Convert
+function convertK2F (temperature){
+  temperature = Math.floor((((temperature)-273.15) * (9 / 5) + 32));
+  return temperature;
+}
+
+
 // When A User Types In A City And Submits
 $(userSearch).submit(function(){
   event.preventDefault();
@@ -17,6 +24,14 @@ $(userSearch).submit(function(){
   // Builds URLs
   let currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
   let forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
+  console.log(forecastQueryURL);
+
+  // Loading Icon for Weather Results Element
+  $("#searchResults").append('<div id="searchResultsLoadingIcon" class="spinner-border text-light" role="status"><span class="sr-only"></span></div>'); // Loading Icon
+
+  // Revealing Weather Results Element
+  $("#searchResults").removeClass("hideElement");
+  $("#searchResults").addClass("showElement");
 
   // Current Weather Call
   $.ajax({
@@ -28,9 +43,8 @@ $(userSearch).submit(function(){
       // Changing Header to Match Search Results
       $("#weatherHeader").text(response.name + " Weather");
       
-      // Revealing Weather Search Results
-      $("#searchResults").removeClass("hideElement");
-      $("#searchResults").addClass("showElement");
+      // Removing Loading Icon
+      $("#searchResultsLoadingIcon").remove();
 
       // Matching Weather Icon
       let weatherIconID = response.weather[0].icon;
@@ -42,19 +56,15 @@ $(userSearch).submit(function(){
       $("#weatherCityName").append("<h2>"+response.name+"</h2>");
       $("#weatherCityName").append("<h5>"+(response.weather[0].description).toUpperCase()+"</h5>");
 
-      // Temperatures
-      let temperatureCurrent = Math.floor((((response.main.temp)-273.15) * (9 / 5) + 32));
-      let temperatureHigh = Math.floor((((response.main.temp_max)-273.15) * (9 / 5) + 32));
-      let temperatureLow = Math.floor((((response.main.temp_min)-273.15) * (9 / 5) + 32));
+      // Temperatures - current, high, low
+      let temperatureCurrent = convertK2F(response.main.temp);
+      let temperatureHigh = convertK2F(response.main.temp_max);
+      let temperatureLow = convertK2F(response.main.temp_min);
 
       $("#weatherTemperature").empty(); // Protection from overflowing element
       $("#weatherTemperature").append("<h4>Temp: " + temperatureCurrent + " \xB0F</h4>");
       $("#weatherTemperature").append("<h5>High: " + temperatureHigh + " \xB0F</h5>");
       $("#weatherTemperature").append("<h5>Low: " + temperatureLow + " \xB0F</h5>");
-
-      // Loading Icon for Weather Element
-      // $("#weatherInformation").empty();
-      $("#weatherInformation").append('<div class="spinner-border text-light" role="status"><span class="sr-only"></span></div>'); // Loading Icon
 
       // Humidity
       $("#weatherInformation").empty(); // Protection from overflowing element
@@ -74,7 +84,6 @@ $(userSearch).submit(function(){
       let uviLon = response.coord.lon;
 
       let uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + uviLat + "&lon=" + uviLon + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
-      console.log(uvIndexURL);
 
       // UV Index Get
       $.ajax({
@@ -101,5 +110,7 @@ $(userSearch).submit(function(){
             $("#weatherUVIndex").append("<h5 class='violet'>Extreme</h5>");
           }
         });
+      
+        
     });
 })
