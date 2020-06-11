@@ -28,8 +28,8 @@ $(userSearch).submit(function(){
   revealElement($("#currentDateParent"));
 
   // Builds URLs
-  let currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
-  let forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
+  let currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
+  let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
 
   // Loading Icon for Weather Results Element
   $("#searchResults").append('<div id="searchResultsLoadingIcon" class="spinner-border text-light" role="status"><span class="sr-only"></span></div>'); // Loading Icon
@@ -93,7 +93,7 @@ $(userSearch).submit(function(){
       let uviLat = response.coord.lat;
       let uviLon = response.coord.lon;
 
-      let uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + uviLat + "&lon=" + uviLon + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
+      let uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + uviLat + "&lon=" + uviLon + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
 
       // UV Index Get
       $.ajax({
@@ -145,7 +145,7 @@ $(userSearch).submit(function(){
 
         // Forecast Icon
         let forecastIconID = response.list[i].weather[0].icon;
-        $(forecastWeatherDescription).prepend('<img src="http://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">')
+        $(forecastWeatherDescription).prepend('<img src="https://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">')
       };
   });
 });
