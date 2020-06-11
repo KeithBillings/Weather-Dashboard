@@ -120,11 +120,8 @@ $(userSearch).submit(function(){
             $("#weatherUVIndex").append("<h5 class='violet'>Extreme</h5>");
           }
         });
-      
-        
     });
 
-  
   // Forecasted time
   for (i=1; i<=5; i++){
     let forecastDay = document.querySelector("#forecastResults > div:nth-child("+ (i) + ") > div > div > h4")
@@ -139,13 +136,26 @@ $(userSearch).submit(function(){
     .then(function(response){
 
       for (i=0; i<=5; i++){
-        // Weather Description
         let forecastWeatherDescription = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > h6");
+        let forecastIcon = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > div");
+        let forecastIconID = response.list[i].weather[0].icon;
+        let forecastInformation = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > div.card-text")
+
+        // Weather Description
         $(forecastWeatherDescription).text((response.list[i].weather[0].description).toUpperCase());
 
         // Forecast Icon
-        let forecastIconID = response.list[i].weather[0].icon;
-        $(forecastWeatherDescription).prepend('<img src="https://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">')
+        $(forecastIcon).empty();
+        $(forecastIcon).prepend('<img src="https://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">');
+
+        // Remove Loading Icon
+        $(forecastInformation).text("test");
+
+        // Temperatures
+        // $(forecastInformation)
+
+
+
       };
   });
 });

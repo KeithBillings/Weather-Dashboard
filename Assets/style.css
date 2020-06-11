@@ -7,12 +7,22 @@ body {
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .hideElement {
   display: none;
 }
 
 .showElement {
   display: block;
+}
+
+.card, #searchResults > div:nth-child(1) {
+  background-color: rgba(255, 255, 255, 0.082);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+  border-radius: 7px;
 }
 
 /* UVI Color Utilities */
@@ -57,12 +67,21 @@ h1 {
   width: auto;
 }
 
-.card {
-  background-color: transparent;
+.col-lg-2 {
+  padding: 0;
+  margin: 1rem;
+}
+
+.col-lg-3 {
+  padding-top: 1rem;
 }
 
 .card-body {
   color: white;
+}
+
+.forecastIcon {
+  margin-bottom: .75rem;
 }
 
 .firstVisit {
@@ -88,7 +107,7 @@ h1 {
   margin-top: 1rem;
 }
 
-#searchResults > .row {
+#searchResults > .row, #userSearchInput {
   margin-bottom: 2rem;
 }
 
@@ -96,10 +115,15 @@ h1 {
   margin: 2rem;
 }
 
-#forecastResults {
+#forecastResults, #weatherHeader {
   margin-top: 3rem;
+  justify-content: center;
 }
 
-#weatherHeader {
-  margin-top: 3rem;
+#forecastResults > * {
+  box-sizing: content-box;
+}
+
+#searchResults > div:nth-child(1) {
+  padding: 2rem;
 }
