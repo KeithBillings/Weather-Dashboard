@@ -139,7 +139,11 @@ $(userSearch).submit(function(){
         let forecastWeatherDescription = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > h6");
         let forecastIcon = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > div");
         let forecastIconID = response.list[i].weather[0].icon;
-        let forecastInformation = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > div.card-text")
+        let forecastInformation = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > div.card-text");
+        let forecastTemp = convertK2F(response.list[i].main.temp);
+        let forecastTempHigh = convertK2F(response.list[i].main.temp_max);
+        let forecastTempLow = convertK2F(response.list[i].main.temp_min);
+        let forecastHumidity = response.list[i].main.humidity;
 
         // Weather Description
         $(forecastWeatherDescription).text((response.list[i].weather[0].description).toUpperCase());
@@ -149,13 +153,15 @@ $(userSearch).submit(function(){
         $(forecastIcon).prepend('<img src="https://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">');
 
         // Remove Loading Icon
-        $(forecastInformation).text("test");
+        $(forecastInformation).empty();
 
         // Temperatures
-        // $(forecastInformation)
+        $(forecastInformation).append("Temp: "+ forecastTemp + " \xB0F");
+        $(forecastInformation).append("<br>High: "+ forecastTempHigh + " \xB0F");
+        $(forecastInformation).append("<br>Low: "+ forecastTempLow + " \xB0F");
 
-
-
+        // Humidity
+        $(forecastInformation).append("<br>Humidity: " + forecastHumidity + "%");
       };
   });
 });
