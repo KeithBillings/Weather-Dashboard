@@ -34,7 +34,7 @@ body {
 
 
 /* Headers */
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   color: white;
   text-shadow: black 0px 0px 10px;
 }
@@ -46,9 +46,7 @@ h1 {
 /* Classes */
 .centerAllElements {
   width: 100vw;
-  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
@@ -65,6 +63,11 @@ h1 {
 
 .card-body {
   color: white;
+}
+
+.firstVisit {
+  height: 100vh;
+  justify-content: center;
 }
 
 /* Ids */
@@ -85,6 +88,10 @@ h1 {
   margin-top: 1rem;
 }
 
+#searchResults > .row {
+  margin-bottom: 2rem;
+}
+
 #userSearch {
   margin: 2rem;
 }
@@ -93,3 +100,6 @@ h1 {
   margin-top: 3rem;
 }
 
+#weatherHeader {
+  margin-top: 3rem;
+}

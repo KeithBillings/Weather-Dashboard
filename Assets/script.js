@@ -1,16 +1,23 @@
 const userSearch = document.getElementById('userSearch');
 
-$(document).ready(function () {
-  // Current time
-  $("#currentDate").text(moment().format("MMMM Do, YYYY"));
-});
-
 // Temp Convert
 function convertK2F (temperature){
   temperature = Math.floor((((temperature)-273.15) * (9 / 5) + 32));
   return temperature;
-}
+};
 
+// Show Hidden Element
+function revealElement (element){
+  element = element.removeClass("hideElement");
+  element = element.addClass("showElement");
+  return element;
+};
+
+$(document).ready(function () {
+  // Current time
+  $("#currentDate").text(moment().format("MMMM Do, YYYY"));
+
+});
 
 // When A User Types In A City And Submits
 $(userSearch).submit(function(){
@@ -18,20 +25,23 @@ $(userSearch).submit(function(){
   let userSearchInput = $("#userSearchInput").val();
 
   // Show Date
-  $("#currentDateParent").removeClass("hideElement");
-  $("#currentDateParent").addClass("showElement");
+  revealElement($("#currentDateParent"));
 
   // Builds URLs
   let currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
   let forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + userSearchInput + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
-  console.log(forecastQueryURL);
 
   // Loading Icon for Weather Results Element
   $("#searchResults").append('<div id="searchResultsLoadingIcon" class="spinner-border text-light" role="status"><span class="sr-only"></span></div>'); // Loading Icon
 
   // Revealing Weather Results Element
-  $("#searchResults").removeClass("hideElement");
-  $("#searchResults").addClass("showElement");
+  revealElement($("#searchResults"));
+
+  // Adding header to search input box
+  revealElement($("#userSearchHeader"));
+
+  // Header CSS 
+  $("#weatherHeader").parent().removeClass("firstVisit");
 
   // Current Weather Call
   $.ajax({
@@ -113,4 +123,29 @@ $(userSearch).submit(function(){
       
         
     });
-})
+
+  
+  // Forecasted time
+  for (i=1; i<=5; i++){
+    let forecastDay = document.querySelector("#forecastResults > div:nth-child("+ (i) + ") > div > div > h4")
+    $(forecastDay).text(moment().add(i, 'days').format("dddd"))
+  }
+
+  // Forecast Weather Call
+  $.ajax({
+    url: forecastQueryURL,
+    method: "GET"
+  })
+    .then(function(response){
+
+      for (i=0; i<=5; i++){
+        // Weather Description
+        let forecastWeatherDescription = document.querySelector("#forecastResults > div:nth-child(" + (i+1) + ") > div > div > h6");
+        $(forecastWeatherDescription).text((response.list[i].weather[0].description).toUpperCase());
+
+        // Forecast Icon
+        let forecastIconID = response.list[i].weather[0].icon;
+        $(forecastWeatherDescription).prepend('<img src="http://openweathermap.org/img/wn/' + forecastIconID + '.png" alt="weatherIcon">')
+      };
+  });
+});
