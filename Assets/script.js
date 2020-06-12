@@ -17,6 +17,12 @@ $(document).ready(function () {
   // Current time
   $("#currentDate").text(moment().format("MMMM Do, YYYY"));
 
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+  });
+
+  // Load Local Storage Into Search History
+
 });
 
 // When A User Types In A City And Submits
@@ -53,6 +59,10 @@ $(userSearch).submit(function(){
       // Changing Header to Match Search Results
       $("#weatherHeader").text(response.name + " Weather");
       
+      // Add Search to Search History
+      localStorage.setItem(response.name, "test")
+      // $("#searchHistory").prepend('<li><a href="#">' + response.name + '</a></li>')
+          
       // Removing Loading Icon
       $("#searchResultsLoadingIcon").remove();
 
@@ -164,4 +174,6 @@ $(userSearch).submit(function(){
         $(forecastInformation).append("<br>Humidity: " + forecastHumidity + "%");
       };
   });
+
 });
+
