@@ -17,27 +17,29 @@ function revealElement(element) {
 };
 
 // Hide Element
-function hideElement(element){
+function hideElement(element) {
   $(element).removeClass("showElement");
   $(element).addClass("hideElement");
   return element
 };
 
 // Load Local Storage Into Search History
-function updateHistory (cityName) {
-  const searchHistory = JSON.parse(localStorage.getItem("Weather Search History")) || [];
+function addToHistory(cityName) {
+  let searchHistory = JSON.parse(localStorage.getItem("Weather Search History")) || [];
   searchHistory.push(cityName);
-  localStorage.setItem("Weather Search History", JSON.stringify(searchHistory)); 
-
-  $("#searchHistory").innerHTML = searchHistory
-  .map(searchHistory => {
-    return `<li ${searchHistory}</li>`;
-  })
-  .join("");
+  localStorage.setItem("Weather Search History", JSON.stringify(searchHistory));
+};
+function updateHistory() {
+  let searchHistory = JSON.parse(localStorage.getItem("Weather Search History")) || [];
+  $("#searchHistory").html(searchHistory
+    .map(searchHistoryList => {
+      return (`<li> ` + searchHistoryList + `</li>`);
+    })
+    .join(""));
 };
 
 // No Results
-function noResults(){
+function noResults() {
   revealElement($("#noResults"));
 };
 
@@ -54,6 +56,8 @@ $(document).ready(function () {
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
   });
+
+  updateHistory();
 });
 
 // When A User Types In A City And Submits
@@ -80,7 +84,6 @@ $(userSearch).submit(function () {
       $("#weatherHeader").parent().addClass("firstVisit");
       $("#weatherHeader").text("Weather Dashboard");
       noResults();
-      abort();
     }
   })
     .then(function (response) {
@@ -165,7 +168,8 @@ $(userSearch).submit(function () {
           }
         });
       // Add Search to Search History
-      updateHistory(response.name);
+      addToHistory(response.name);
+      updateHistory();
     });
 
   // Forecasted time
@@ -210,6 +214,5 @@ $(userSearch).submit(function () {
         $(forecastInformation).append("<br>Humidity: " + forecastHumidity + "%");
       };
     });
-
 });
 
