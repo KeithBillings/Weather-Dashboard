@@ -121,12 +121,24 @@ h1 {
   margin-top: 1rem;
 }
 
+ /* Search  */
+
 #searchResults > .row, #userSearchInput {
   margin-bottom: 2rem;
 }
 
+#userSearchInput {
+  padding: 0.5rem;
+  width: 20vw;
+}
+
 #userSearch {
-  margin: 2rem;
+  margin: 2rem 0 2rem 2rem;
+}
+
+#userSearchHeader {
+  margin-bottom: 1rem;
+  margin-right: 3rem;
 }
 
 #forecastResults, #weatherHeader {
@@ -174,7 +186,7 @@ h1 {
 }
 
 #userSearch > button {
-  padding: 1px 8px 4px 8px;
   margin-bottom: 5px;
   margin-left: .5rem;
+  padding-bottom: 9px;
 }
