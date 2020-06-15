@@ -26,14 +26,14 @@ function hideElement(element) {
 // Load Local Storage Into Search History
 function addToHistory(cityName) {
   let searchHistory = JSON.parse(localStorage.getItem("Weather Search History")) || [];
-  searchHistory.push(cityName);
+  searchHistory.unshift(cityName);
   localStorage.setItem("Weather Search History", JSON.stringify(searchHistory));
 };
 function updateHistory() {
   let searchHistory = JSON.parse(localStorage.getItem("Weather Search History")) || [];
   $("#searchHistory").html(searchHistory
     .map(searchHistoryList => {
-      return (`<li> ` + searchHistoryList + `</li>`);
+      return (`<li><button class="btn btn-link historyList"> ` + searchHistoryList + `</button></li>`);
     })
     .join(""));
 };
@@ -42,28 +42,8 @@ function updateHistory() {
 function noResults() {
   revealElement($("#noResults"));
 };
-
-$(document).ready(function () {
-  // Current time
-  $("#currentDate").text(moment().format("MMMM Do, YYYY"));
-
-  // Enabling Search Button after text has been input
-  $(userSearchInput).keyup(function () {
-    searchButton.disabled = (!userSearchInput.val());
-  });
-
-  // Button to toggle Sidebar
-  $('#sidebarCollapse').on('click', function () {
-    $('#sidebar').toggleClass('active');
-  });
-
-  updateHistory();
-});
-
-// When A User Types In A City And Submits
-$(userSearch).submit(function () {
-  event.preventDefault();
-
+ 
+function searchFunction() {
   // Builds URLs
   let currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearchInput.val() + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
   let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearchInput.val() + "&APPID=cebdb9193e7fdb67dd3b7d1aa04be4ca";
@@ -214,5 +194,35 @@ $(userSearch).submit(function () {
         $(forecastInformation).append("<br>Humidity: " + forecastHumidity + "%");
       };
     });
-});
+};
 
+
+// On Page Load
+$(document).ready(function () {
+  // Current time
+  $("#currentDate").text(moment().format("MMMM Do, YYYY"));
+
+  // Enabling Search Button after text has been input
+  $(userSearchInput).keyup(function () {
+    searchButton.disabled = (!userSearchInput.val());
+  });
+
+  // Button to toggle Sidebar
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+  });
+
+  updateHistory();
+
+  // When A User Types In A City And Submits
+  $(userSearch).submit(function(){
+    event.preventDefault();
+    searchFunction();
+  });
+
+  // When user clicks city in history, it searches for it
+  $('.historyList').on('click', function () {
+    userSearchInput.val($(this).text());
+    searchFunction();
+  });
+});  
